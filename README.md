@@ -1,21 +1,21 @@
-# ccl-cli
+# ccl-cli-installer
 
 Claude Code Launcher CLI 安装器
 
 ## 简介
 
-ccl-cli 是一个 npm 包，用于将 [claude-code-launcher](https://github.com/FullStackPlayer/claude-code-launcher) 安装为系统全局命令行工具。
+ccl-cli-installer 是一个 npm 包，用于将 [claude-code-launcher](https://github.com/FullStackPlayer/claude-code-launcher) 安装为系统全局命令行工具。
 
 ## 架构设计
 
 本项目采用分层架构设计：
-- **主包 (ccl-cli)**: 负责架构检测、子包安装和命令转发
+- **主包 (ccl-cli-installer)**: 负责架构检测、子包安装和命令转发
 - **子包**: 按平台架构命名(如 ccl-cli-darwin-arm64)，每个子包只包含对应架构的二进制文件
 
 ## 安装
 
 ```bash
-npm install -g ccl-cli
+npm install -g ccl-cli-installer
 ```
 
 安装过程中会自动检测您的平台架构并安装对应的子包。

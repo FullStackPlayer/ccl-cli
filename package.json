@@ -1,5 +1,5 @@
 {
-  "name": "ccl-cli",
+  "name": "ccl-cli-installer",
   "version": "0.9.2",
   "description": "Claude Code Launcher CLI 安装器",
   "main": "index.js",
