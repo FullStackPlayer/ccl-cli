@@ -1,0 +1,82 @@
+#!/usr/bin/env node
+
+const { spawn } = require('child_process');
+const process = require('process');
+
+// 根据平台和架构确定要执行的命令
+function getTargetCommand() {
+  const platform = process.platform;
+  const arch = process.arch;
+  
+  switch (`${platform}-${arch}`) {
+    case 'darwin-arm64':
+      return 'ccl-darwin-arm64';
+    case 'darwin-x64':
+      return 'ccl-darwin-x64';
+    case 'linux-x64':
+      return 'ccl-linux-x64';
+    case 'win32-x64':
+      return 'ccl-windows-x64';
+    default:
+      throw new Error(`Unsupported platform: ${platform}-${arch}`);
+  }
+}
+
+// 错误处理函数
+function handleError(error, command = '') {
+  if (error.code === 'ENOENT') {
+    console.error(`Command '${command}' not found. Please run 'npm install -g ccl-cli' to install the required components.`);
+  } else {
+    console.error('Error executing command:', error.message);
+  }
+  
+  // Windows 下的特殊错误处理
+  if (process.platform === 'win32') {
+    if (error.code === 'EPERM') {
+      console.error('Permission denied. Try running as administrator.');
+    }
+  } else {
+    if (error.code === 'EACCES') {
+      console.error('Permission denied. Try using sudo.');
+    }
+  }
+  
+  process.exit(1);
+}
+
+// 执行目标命令
+function executeTargetCommand() {
+  try {
+    const command = getTargetCommand();
+    const args = process.argv.slice(2);
+    
+    // Windows 平台特殊处理
+    const options = {
+      stdio: 'inherit',
+      shell: process.platform === 'win32' ? true : false
+    };
+    
+    const child = spawn(command, args, options);
+    
+    // 统一信号处理
+    process.on('SIGINT', () => {
+      if (process.platform === 'win32') {
+        child.kill(); // Windows 下直接 kill
+      } else {
+        child.kill('SIGINT'); // Unix-like 系统发送 SIGINT
+      }
+    });
+    
+    child.on('close', (code) => {
+      process.exit(code);
+    });
+    
+    child.on('error', (error) => {
+      handleError(error, command);
+    });
+  } catch (error) {
+    handleError(error);
+  }
+}
+
+executeTargetCommand();

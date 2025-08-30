@@ -1,0 +1,29 @@
+{
+  "name": "ccl-cli",
+  "version": "1.0.0",
+  "description": "Claude Code Launcher CLI 安装器",
+  "main": "index.js",
+  "bin": {
+    "ccl": "./bin/ccl"
+  },
+  "scripts": {
+    "postinstall": "node scripts/postinstall.js",
+    "test": "node --test"
+  },
+  "preferGlobal": true,
+  "os": [
+    "darwin",
+    "linux",
+    "win32"
+  ],
+  "cpu": [
+    "x64",
+    "arm64"
+  ],
+  "keywords": [
+    "cli",
+    "claude-code-launcher"
+  ],
+  "author": "FullStackPlayer",
+  "license": "MIT"
+}
