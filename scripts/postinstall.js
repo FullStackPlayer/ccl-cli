@@ -24,7 +24,7 @@ function getSubPackageName() {
 function installSubPackage(packageName) {
   try {
     console.log(`Installing ${packageName}...`);
-    // execSync(`npm install -g ${packageName}`, { stdio: 'inherit' });
+    execSync(`npm install -g ${packageName}`, { stdio: 'inherit' });
     console.log(`${packageName} installed successfully!`);
     return true;
   } catch (error) {
