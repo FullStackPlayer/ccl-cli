@@ -1,0 +1,31 @@
+# macOS
+.DS_Store
+
+# Exclude files that should not be included in the npm package
+.gitignore
+*.md
+
+# But explicitly include README.md
+!README.md
+
+# Exclude development and test files
+test/
+tests/
+*.test.js
+*.spec.js
+
+# Exclude logs and temporary files
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Exclude node_modules (handled by npm automatically)
+node_modules/
+
+# Exclude package-lock.json (handled by npm automatically)
+package-lock.json
+
+# Exclude any .git files
+.git/
