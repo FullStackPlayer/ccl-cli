@@ -38,6 +38,6 @@ describe('Postinstall Script Functionality Tests', () => {
     assert.strictEqual(scriptContent.includes('ccl-cli-darwin-arm64'), true, 'Script should reference darwin-arm64 sub-package');
     assert.strictEqual(scriptContent.includes('ccl-cli-darwin-x64'), true, 'Script should reference darwin-x64 sub-package');
     assert.strictEqual(scriptContent.includes('ccl-cli-linux-x64'), true, 'Script should reference linux-x64 sub-package');
-    assert.strictEqual(scriptContent.includes('ccl-cli-windows-x64'), true, 'Script should reference windows-x64 sub-package');
+    assert.strictEqual(scriptContent.includes('ccl-cli-win32-x64'), true, 'Script should reference win32-x64 sub-package');
   });
 });

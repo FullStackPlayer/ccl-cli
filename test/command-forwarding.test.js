@@ -33,7 +33,7 @@ describe('Command Forwarding Tests', () => {
     assert.strictEqual(scriptContent.includes('ccl-darwin-arm64'), true, 'Script should handle darwin-arm64');
     assert.strictEqual(scriptContent.includes('ccl-darwin-x64'), true, 'Script should handle darwin-x64');
     assert.strictEqual(scriptContent.includes('ccl-linux-x64'), true, 'Script should handle linux-x64');
-    assert.strictEqual(scriptContent.includes('ccl-windows-x64'), true, 'Script should handle windows-x64');
+    assert.strictEqual(scriptContent.includes('ccl-win32-x64'), true, 'Script should handle win32-x64');
   });
 
   test('should have error handling', () => {

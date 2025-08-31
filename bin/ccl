@@ -16,7 +16,7 @@ function getTargetCommand() {
     case 'linux-x64':
       return 'ccl-linux-x64';
     case 'win32-x64':
-      return 'ccl-windows-x64';
+      return 'ccl-win32-x64';
     default:
       throw new Error(`Unsupported platform: ${platform}-${arch}`);
   }
