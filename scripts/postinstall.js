@@ -11,7 +11,7 @@ const subPackages = {
   'darwin-arm64': 'ccl-cli-darwin-arm64',
   'darwin-x64': 'ccl-cli-darwin-x64',
   'linux-x64': 'ccl-cli-linux-x64',
-  'win32-x64': 'ccl-cli-win32-x64'
+  'win32-x64': 'ccl-cli-windows-x64'
 };
 
 // 生成子包名称
