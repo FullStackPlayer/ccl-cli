@@ -50,13 +50,25 @@ function executeTargetCommand() {
     const command = getTargetCommand();
     const args = process.argv.slice(2);
     
+    let child;
     // Windows 平台特殊处理
-    const options = {
-      stdio: 'inherit',
-      shell: process.platform === 'win32' ? true : false
-    };
-    
-    const child = spawn(command, args, options);
+    if (process.platform === 'win32') {
+      // 把命令和参数组装成一个字符串（否则会有 DEP0190 报警）
+      const fullCommand = [
+        command,
+        ...args.map(a => `"${a.replace(/"/g, '\\"')}"`)
+      ].join(' ');
+      // 只有 windows 平台下才使用 shell 模式
+      child = spawn(fullCommand, {
+        stdio: 'inherit',
+        shell: true
+      });
+    } else {
+      child = spawn(command, args, {
+        stdio: 'inherit',
+        shell: false
+      });
+    }    
     
     // 统一信号处理
     process.on('SIGINT', () => {
